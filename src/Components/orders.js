@@ -30,6 +30,7 @@ class Orders extends React.Component {
       OrderService.addItems(localStorage.getItem('email'),total_per_item,localStorage.getItem('total')).then(res=>{
         localStorage.removeItem('total_per_item');
         localStorage.removeItem('total');
+        alert("Your order has been placed successfully");
         CartService.emptyCart(localStorage.getItem('email')).then(res=>{
           console.log(res);
         }).catch(err=>{

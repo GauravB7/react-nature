@@ -57,9 +57,6 @@ class Cart extends React.Component {
         }
         if(!localStorage.getItem('email')){
             this.props.history.push("/login");
-            //localStorage.removeItem('productId');
-            //localStorage.removeItem('productName');
-            //localStorage.removeItem('productPrice');
         }
     }
 
