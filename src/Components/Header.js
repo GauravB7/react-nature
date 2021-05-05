@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 import UserService from '../services/user.service';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
@@ -69,6 +69,7 @@ class Header extends React.Component {
           onClose={handleClose}
         >
           <MenuItem><a href="/cart"><ShoppingCartRoundedIcon style={{ color: yellow[500] }}/></a></MenuItem>
+          <MenuItem><Link to="/orders">My Orders</Link></MenuItem>
           <MenuItem onClick={this.logout}><a href="/login"><ExitToAppRoundedIcon style={{ color: red[500] }}/></a></MenuItem>
         </Menu>
       </span>

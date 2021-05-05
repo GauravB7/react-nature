@@ -14,6 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button, TableFooter } from '@material-ui/core';
 import cartService from '../services/cart.service';
+import StoreSharpIcon from '@material-ui/icons/StoreSharp';
 
 
 class Cart extends React.Component {
@@ -56,21 +57,16 @@ class Cart extends React.Component {
         }
         if(!localStorage.getItem('email')){
             this.props.history.push("/login");
-            localStorage.removeItem('productId');
-            localStorage.removeItem('productName');
-            localStorage.removeItem('productPrice');
+            //localStorage.removeItem('productId');
+            //localStorage.removeItem('productName');
+            //localStorage.removeItem('productPrice');
         }
     }
 
     async setProducts(){
         const email=localStorage.getItem('email');
         await CartService.getItems(email).then(res=>{
-            res.data.message.map(user=>{
-                if(user.email === email){
-                   return this.setState({products:user.products});
-                }
-                return true;
-            });
+            this.setState({products:res.data.message[0].products});
             this.calculateTotal();
         }
         ).catch(err=>{
@@ -80,8 +76,10 @@ class Cart extends React.Component {
     }
 
     checkout(){
-      localStorage.setItem('total',this.state.sum);
-      localStorage.setItem('products',this.state.products);
+      if(this.state.sum>0){
+        localStorage.setItem('total',this.state.sum);
+        localStorage.setItem('total_per_item',JSON.stringify(this.state.totalPerItem));
+      }
       this.props.history.push("/orders");
     }
 
@@ -144,6 +142,9 @@ class Cart extends React.Component {
       <Header/>
       <Navbar/>
       <Menubar/>
+      <div className="loginBlock">
+            <h3>YOUR CART</h3>
+      </div>
       <div className="appleBonsai">
       <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
@@ -156,7 +157,8 @@ class Cart extends React.Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.state.products.map((val,index)=>{
+          {
+          this.state.products && this.state.products.map((val,index)=>{
             return(
             <TableRow key={val[0]}>
               <TableCell component="th" scope="row">
@@ -178,10 +180,18 @@ class Cart extends React.Component {
         </TableRow>
         </TableBody>
         <TableFooter>
+          {
+            this.state.products.length>0?<TableRow>
+            <TableCell colSpan="2" align="center"><Button variant="contained" color="secondary" onClick={this.emptyCart}>Empty Cart</Button></TableCell>
+            <TableCell colSpan="2" align="center">
+              <Button variant="contained" color="secondary" onClick={this.checkout}>Confirm Order<StoreSharpIcon></StoreSharpIcon></Button></TableCell>
+          </TableRow>:
           <TableRow>
-            <TableCell colSpan="2" align="center"><Button color="secondary" onClick={this.emptyCart}>Empty Cart</Button></TableCell>
-            <TableCell colSpan="2" align="center"><Button color="secondary" onClick={this.checkout}>Proceed to CheckOut</Button></TableCell>
-          </TableRow>
+          <TableCell colSpan="2" align="center"><Button variant="contained" disabled onClick={this.emptyCart}>Empty Cart</Button></TableCell>
+          <TableCell colSpan="2" align="center">
+            <Button variant="contained" disabled onClick={this.checkout}>Confirm Order<StoreSharpIcon></StoreSharpIcon></Button></TableCell>
+        </TableRow>
+          }
         </TableFooter>
       </Table>
     </TableContainer>

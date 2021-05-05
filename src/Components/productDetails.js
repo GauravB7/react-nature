@@ -69,7 +69,7 @@ class ProductDetails extends React.Component {
     <div className="Description">
         <p>{this.state.product.description}<br />
         <b>Position :</b>{this.state.position}</p>
-      <div className="select">
+        <div className="select">
         <h3>$24.55</h3>
         <input type="submit" value="Buy Product" onClick={this.addProduct} />
         <a href="/products"><input type="submit" value="Back"/></a>

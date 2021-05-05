@@ -13,7 +13,7 @@ class CartService {
 
     getItems(email){
         console.log(email);
-        return axios.get(USER_API_BASE_URL,{email:email},{headers:headers});
+        return axios.post(USER_API_BASE_URL+"id",{email:email},{headers:headers});
     }
 
     emptyCart(email){

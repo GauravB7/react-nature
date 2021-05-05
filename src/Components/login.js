@@ -106,10 +106,13 @@ class Login extends React.Component {
         localStorage.setItem('email',this.state.email);
         UserService.login(this.state.email,this.state.password).then(res=>{
             console.log(res);
-            
             UserService.setLocalStorage(res);
             console.log("Login successful");
-            this.props.history.push("/");
+            if(localStorage.getItem('productId')&&localStorage.getItem('productPrice')&&localStorage.getItem('productName')){
+                this.props.history.push("/cart");
+            }else{
+                this.props.history.push("/");
+            }
         }).catch(
             err => {
                 localStorage.removeItem('email');
