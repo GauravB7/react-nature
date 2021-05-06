@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button, TableFooter } from '@material-ui/core';
 import cartService from '../services/cart.service';
 import StoreSharpIcon from '@material-ui/icons/StoreSharp';
+import UserService from '../services/user.service';
 
 
 class Cart extends React.Component {
@@ -50,6 +51,8 @@ class Cart extends React.Component {
                 this.setProducts();
             }).catch(err=>{
                 console.log(err);
+                UserService.logout();
+                this.props.history.push("/login");
             });
         }
         else{

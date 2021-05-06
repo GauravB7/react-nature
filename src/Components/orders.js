@@ -14,6 +14,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import generatePDF from '../services/reportGenerator.service';
+import UserService from '../services/user.service';
 
 
 class Orders extends React.Component {
@@ -39,6 +40,10 @@ class Orders extends React.Component {
         this.setOrders();
       }).catch(err=>{
       console.log(err);
+      localStorage.removeItem('total_per_item');
+      localStorage.removeItem('total');
+      UserService.logout();
+      this.props.history.push("/login");
       });
     }
     else{

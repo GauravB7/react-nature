@@ -1,6 +1,20 @@
 import axios from 'axios';
+const tokenProvider = require('axios-token-interceptor');
 
-const USER_API_BASE_URL = "http://localhost:8081/user/cart/";
+ 
+const instance = axios.create({
+  baseURL: 'http://localhost:8081/user/cart'
+});
+
+instance.interceptors.request.use(tokenProvider({
+  getToken: () => {
+    if(localStorage.getItem('id_token')){
+      return localStorage.getItem('id_token').split("Bearer ")[1];
+    }
+}
+})); 
+
+
 const headers = {
     'content-type': 'application/json'
   };
@@ -8,21 +22,21 @@ const headers = {
 class CartService {
 
     addItems(email,productsToAdd){
-        return axios.post(USER_API_BASE_URL,{email:email,productsToAdd:productsToAdd} ,{headers:headers});
+        return instance.post("",{email:email,productsToAdd:productsToAdd} ,{headers:headers});
     }
 
     getItems(email){
         console.log(email);
-        return axios.post(USER_API_BASE_URL+"id",{email:email},{headers:headers});
+        return instance.post("id",{email:email},{headers:headers});
     }
 
     emptyCart(email){
         console.log(email);
-        return axios.put(USER_API_BASE_URL+"empty",{email:email},{headers:headers});
+        return instance.put("empty",{email:email},{headers:headers});
     }
 
     updateCart(email,productsToUpdate){
-        return axios.put(USER_API_BASE_URL+"update",{email:email,productsToUpdate:productsToUpdate},{headers:headers});
+        return instance.put("update",{email:email,productsToUpdate:productsToUpdate},{headers:headers});
     }
 
 }

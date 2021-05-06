@@ -30,6 +30,7 @@ class UserService {
     localStorage.removeItem("expires_at");
     localStorage.removeItem('productId');
     localStorage.removeItem('productName');
+    localStorage.removeItem('productPrice');
   }
 
     isLoggedIn() {

@@ -1,6 +1,19 @@
 import axios from 'axios';
+const tokenProvider = require('axios-token-interceptor');
 
-const USER_API_BASE_URL = "http://localhost:8081/user/order/";
+ 
+const instance = axios.create({
+  baseURL: 'http://localhost:8081/user/order'
+});
+
+instance.interceptors.request.use(tokenProvider({
+  getToken: () => {
+    if(localStorage.getItem('id_token')){
+      return localStorage.getItem('id_token').split("Bearer ")[1];
+    }
+}
+})); 
+
 const headers = {
     'content-type': 'application/json'
   };
@@ -8,11 +21,11 @@ const headers = {
 class OrderService {
 
     addItems(email,total_per_item,total){
-        return axios.post(USER_API_BASE_URL+"add",{email:email,total_per_item:total_per_item,total:total} ,{headers:headers});
+        return instance.post("add",{email:email,total_per_item:total_per_item,total:total} ,{headers:headers});
     }
 
     getItems(email){
-        return axios.post(USER_API_BASE_URL,{email:email},{headers:headers});
+        return instance.post("",{email:email},{headers:headers});
     }
 
 }

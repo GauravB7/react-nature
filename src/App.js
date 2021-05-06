@@ -12,6 +12,7 @@ import ProductByCategory from './Components/productsByCategory';
 import Cart from './Components/cart';
 import Orders from './Components/orders';
 
+
 function App() {
   return (
     <div className="container">
