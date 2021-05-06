@@ -60,6 +60,8 @@ class Orders extends React.Component {
       console.log(this.state.orders);
     }).catch(err=>{
       console.log(err);
+      UserService.logout();
+      this.props.history.push("/login");
     });
   }
 

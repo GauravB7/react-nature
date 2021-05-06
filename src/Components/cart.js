@@ -73,6 +73,8 @@ class Cart extends React.Component {
         }
         ).catch(err=>{
             console.log(err);
+            UserService.logout();
+            this.props.history.push("/login");
         });
         
     }

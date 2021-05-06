@@ -72,7 +72,7 @@ class ProductDetails extends React.Component {
         <div className="select">
         <h3>$24.55</h3>
         <input type="submit" value="Buy Product" onClick={this.addProduct} />
-        <a href="/products"><input type="submit" value="Back"/></a>
+        <span style={{marginLeft:'10px'}}></span><input type="submit" value="Back" onClick={()=>this.props.history.goBack()}/>
       </div>
   </div>
 </div>
