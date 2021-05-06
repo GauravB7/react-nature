@@ -54,7 +54,9 @@ class Orders extends React.Component {
   async setOrders(){
     await OrderService.getItems(localStorage.getItem('email')).then(res=>{
       console.log(res.data.message);
-      this.setState({orders:res.data.message[0].details.reverse()});
+      if(res.data.message.length>0){
+        this.setState({orders:res.data.message[0].details.reverse()});
+      }
       console.log(this.state.orders);
     }).catch(err=>{
       console.log(err);

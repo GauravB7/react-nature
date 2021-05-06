@@ -26,12 +26,10 @@ class CartService {
     }
 
     getItems(email){
-        console.log(email);
         return instance.post("id",{email:email},{headers:headers});
     }
 
     emptyCart(email){
-        console.log(email);
         return instance.put("empty",{email:email},{headers:headers});
     }
 

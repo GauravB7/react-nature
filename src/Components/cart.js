@@ -66,8 +66,10 @@ class Cart extends React.Component {
     async setProducts(){
         const email=localStorage.getItem('email');
         await CartService.getItems(email).then(res=>{
+          if(res.data.message.length>0){
             this.setState({products:res.data.message[0].products});
             this.calculateTotal();
+          } 
         }
         ).catch(err=>{
             console.log(err);
