@@ -3,6 +3,7 @@ import Header from './Header';
 import Navbar from './Navbar';
 import Menubar from './Menubar';
 import Footer from './Footer';
+import feedbackService from '../services/feedback.service';
 
 class Feedback extends React.Component {
 
@@ -16,15 +17,26 @@ class Feedback extends React.Component {
             emailError:'',
             feedbackError:''
         }
-
+        if(localStorage.getItem('name')&&localStorage.getItem('email')){
+            this.state.name=localStorage.getItem('name');
+            this.state.email=localStorage.getItem('email');
+        }
+        this.initialState=this.state;
     }
 
     stopFeedbackSubmission=(e)=>{
         e.preventDefault()
         const isValid = this.feedbackValidate()
         if(isValid){
-            console.log(this.state)
-            this.setState(this.initialState)
+            console.log(this.state);
+            feedbackService.addFeedback(this.state.name,this.state.email,this.state.feedback).then(res=>{
+                alert("Thank You for your valuable feedback");
+            }).catch(err=>{
+                alert("Some error occured. Try again");
+            })
+            this.setState(this.initialState);
+            
+            
         } 
     }
 

@@ -4,6 +4,7 @@ import Header from './Header';
 import Navbar from './Navbar';
 import Menubar from './Menubar';
 import Footer from './Footer';
+import contactService from '../services/contactUs.service';
 
 class contactUs extends React.Component {
 
@@ -17,14 +18,23 @@ class contactUs extends React.Component {
             emailError:'',
             queryError:''
         }
-
+        if(localStorage.getItem('name')&&localStorage.getItem('email')){
+            this.state.name=localStorage.getItem('name');
+            this.state.email=localStorage.getItem('email');
+        }
+        this.initialState=this.state;
     }
 
     stopContactSubmission=(e)=>{
         e.preventDefault()
         const isValid = this.contactUsValidate()
         if(isValid){
-            console.log(this.state)
+            console.log(this.state);
+            contactService.addContact(this.state.name,this.state.email,this.state.query).then(res=>{
+                alert("Thank you for contacting Us");
+            }).catch(err=>{
+                alert("Some error occured. Try again");
+            })
             this.setState(this.initialState)
         } 
     }

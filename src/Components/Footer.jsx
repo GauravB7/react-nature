@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,NavLink} from 'react-router-dom';
 
 class Footer extends React.Component {
   render() {
@@ -14,36 +14,37 @@ class Footer extends React.Component {
         <div className="support">
             <h3>Support</h3>
             <ul type="none" >
-                        <li><Link
-                        className="nav-link"
+                      <li><NavLink
                         to="/"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
                       >Home
-                      </Link></li>
+                      </NavLink></li>
                         <li><Link
                         
                         className="nav-link"
                         to="/products"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
                       >Products available
                       </Link>
                       </li>
                         <li><Link
-                        
                         className="nav-link"
                         to="/aboutUs"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
                       >
                         About Us
                 </Link></li>
                         <li><Link
-                        
                         className="nav-link"
                         to="/contactUs"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
                       >
                         Contact Us
                 </Link></li>
                         <li><Link
-                        
                         className="nav-link"
                         to="/feedback"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
                       >
                         Feedback
                 </Link></li>
@@ -53,7 +54,13 @@ class Footer extends React.Component {
             <h3>My Accounts</h3>
              <ul type="none" >
                         <li>My account</li>
-                        <li>My orders</li>
+                        <li><Link
+                        className="nav-link"
+                        to="/orders"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
+                        >
+                        My orders
+                        </Link></li>
                         <li>My credit slips</li>
                         <li>My addresses</li>
                         <li>My personnel information</li>
@@ -66,7 +73,13 @@ class Footer extends React.Component {
                         <li>New products</li>
                         <li>Best sellers</li>
                         <li>Our store(s)!</li>
-                        <li>Contact us</li>
+                        <li><Link
+                        className="nav-link"
+                        to="/contactUs"
+                        style={{ color: 'inherit', textDecoration: 'inherit'}}
+                        >
+                        Contact Us
+                        </Link></li>
                         <li>Shipping and Delivery policy</li>
                         <li>Privacy Policy</li>
                         <li>Frequently Asked Questiones</li>

@@ -72,7 +72,6 @@ class Login extends React.Component {
         e.preventDefault()
         const isValid = this.loginValidate()
         if(isValid){
-            console.log(this.state)
             this.login();
             this.setState(this.initialState)
         } 

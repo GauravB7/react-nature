@@ -20,6 +20,7 @@ class UserService {
         const expiresAt = moment().add(responseObj.data.expiresIn);
         console.log(responseObj.data);
         localStorage.setItem('id_token', responseObj.data.token);
+        localStorage.setItem('name',responseObj.data.name)
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
       }
 
@@ -28,6 +29,7 @@ class UserService {
     localStorage.removeItem('email');
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+    localStorage.removeItem('name');
     localStorage.removeItem('productId');
     localStorage.removeItem('productName');
     localStorage.removeItem('productPrice');
