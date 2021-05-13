@@ -3,7 +3,7 @@ const tokenProvider = require('axios-token-interceptor');
 
  
 const instance = axios.create({
-  baseURL: 'http://localhost:8081/user/order'
+  baseURL: 'https://nature-paradise.herokuapp.com/user/order'
 });
 
 instance.interceptors.request.use(tokenProvider({

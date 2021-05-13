@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as moment from 'moment';
 
-const USER_API_BASE_URL = "http://localhost:8081/user/";
+const USER_API_BASE_URL = "https://nature-paradise.herokuapp.com/user/";
 const headers = {
     'content-type': 'application/json'
   };

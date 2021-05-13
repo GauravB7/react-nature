@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL = "http://localhost:8081/user/product/";
+const USER_API_BASE_URL = "https://nature-paradise.herokuapp.com/user/product/";
 const headers = {
     'content-type': 'application/json'
   };
