@@ -48,8 +48,8 @@ class Header extends React.Component {
       this.setState({anchorEl:null})
     };
 
-    return (<div className="header" style={{backgroundImage:"url(/react-nature/gh-pages/assets/Nature/LeavesFinal.jpg)"}}>
-    <img src="/assets/Logo/logoTreeBig.jpg" alt="Tree logo"/>
+    return (<div className="header" style={{backgroundImage:"url(/react-nature/assets/Nature/LeavesFinal.jpg)"}}>
+    <img src="/react-nature/assets/Logo/logoTreeBig.jpg" alt="Tree logo"/>
     <h2>Nature's Paradise<br/>
         <span>Make your Home a Greener Place !!</span></h2>
     <p>{!this.state.loggedIn && <NavLink
