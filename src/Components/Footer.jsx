@@ -6,9 +6,9 @@ class Footer extends React.Component {
     return (<footer>
         <div className="follow">
            <h3>Follow Us</h3>
-           <p><img src="/assets/Logo/AllLogo.jpg" alt="logo"/><br/>
+           <p><img src="/react-nature/assets/Logo/AllLogo.jpg" alt="logo"/><br/>
            We also accept:<br/><br/>
-           <img src="/assets/Logo/visaLogo.jpg" alt="visaLogo"/>
+           <img src="/react-nature/assets/Logo/visaLogo.jpg" alt="visaLogo"/>
            </p>
         </div>
         <div className="support">

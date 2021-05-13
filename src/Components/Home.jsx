@@ -12,7 +12,7 @@ class Home extends React.Component {
       <Navbar/>
       <Menubar/>
       <div className="mainPic">
-      <img src="assets/Nature/Sapling.png" alt="sapling"/>
+      <img src="/react-nature/assets/Nature/Sapling.png" alt="sapling"/>
         <div className="overview">
           <p>Anything and Everything to MAKE and MAINTAIN your Garden ...</p>
         </div>
