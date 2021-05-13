@@ -18,7 +18,7 @@ class ProductCategory {
       }
     
     getProductCategory(id){
-        const url = `http://localhost:8081/user/categoryById/${id}`;
+        const url = `https://nature-paradise.herokuapp.com/user/categoryById/${id}`;
         return axios.get(url,{headers:headers});
     }
 }
