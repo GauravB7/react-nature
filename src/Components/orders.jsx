@@ -99,7 +99,7 @@ class Orders extends React.Component {
       <Navbar/>
       <Menubar/>
       <div className="loginBlock">
-            <h3>YOUR ORDERS</h3>
+            <h3>MY ORDERS</h3>
       </div>
       <div className="appleBonsai">
       <TableContainer component={Paper}>
@@ -107,10 +107,10 @@ class Orders extends React.Component {
       <Table className={classes.table} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell>Sr. No.</TableCell>
-            <TableCell align="center">Ordered On</TableCell>
-            <TableCell align="center">Amount</TableCell>
-            <TableCell align="center">Details</TableCell>
+            <TableCell><strong>Sr. No.</strong></TableCell>
+            <TableCell align="center"><strong>Ordered On</strong></TableCell>
+            <TableCell align="center"><strong>Amount</strong></TableCell>
+            <TableCell align="center"><strong>Details</strong></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -129,7 +129,9 @@ class Orders extends React.Component {
                 ${row.total}
               </TableCell>
               <TableCell  align="center">
-                <Button variant="contained" color="secondary" onClick={()=>{generatePDF(this.state.orders[index])}}>View Details</Button>
+                <Button variant="contained"style={{ backgroundColor:"#8BC34A" }} onClick={()=>{generatePDF(this.state.orders[index])}}>
+                  View Details
+                </Button>
               </TableCell>
             </TableRow>
           ))}

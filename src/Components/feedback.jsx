@@ -69,6 +69,8 @@ class Feedback extends React.Component {
 
 
   render() {
+    const { name, email, feedback } = this.state;
+    const isEnabled = name.length > 0 && email.length > 0 && feedback.length > 0;
     return (
        <div>
            <Header/>
@@ -82,7 +84,7 @@ class Feedback extends React.Component {
                         <div className="form-group">
                             <p>
                             <label htmlFor="cust_name">Name :</label>
-                            <input type="text" id="customerName" required="" value={this.state.name} onChange={(e)=>{
+                            <input placeholder="e.g. Mahendra Dhoni" type="text" id="customerName" required="" value={this.state.name} onChange={(e)=>{
                                 this.setState({
                                     name:e.target.value
                                 })
@@ -93,7 +95,7 @@ class Feedback extends React.Component {
                         <div className="form-group">
                             <p>
                             <label htmlFor="cust_name">Email :</label>
-                            <input type="text" id="customerMail" required="" value={this.state.email} onChange={(e)=>{
+                            <input type="text" placeholder="e.g. md123@gmail.com" id="customerMail" required="" value={this.state.email} onChange={(e)=>{
                                 this.setState({
                                     email:e.target.value
                                 })
@@ -112,7 +114,7 @@ class Feedback extends React.Component {
                             <span id="feedbackError">{this.state.feedbackError}</span>
                             </p>
                         </div>
-                        <a href=" # " className="feedbackSubmit"><input type="submit" id="submit" value="Post comment"/></a>
+                        <a href=" # " className="feedbackSubmit"><input disabled={!isEnabled} type="submit" id="submit" value="Post comment"/></a>
                     </form>
                 </div>
             </div>

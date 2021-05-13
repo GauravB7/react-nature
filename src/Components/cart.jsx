@@ -170,7 +170,7 @@ import StoreSharpIcon from '@material-ui/icons/StoreSharp';
       <Navbar/>
       <Menubar/>
       <div className="loginBlock">
-            <h3>YOUR CART</h3>
+            <h3>MY CART</h3>
       </div>
       <div className="appleBonsai">
       <TableContainer component={Paper}>
@@ -178,11 +178,11 @@ import StoreSharpIcon from '@material-ui/icons/StoreSharp';
       <Table className={classes.table} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell>Sr. No.</TableCell>
-            <TableCell>Product Name</TableCell>
-            <TableCell align="center">Quantity</TableCell>
-            <TableCell align="right">Price Per Item</TableCell>
-            <TableCell align="right">Total Per Item</TableCell>
+            <TableCell><strong>Sr. No.</strong></TableCell>
+            <TableCell><strong>Product Name</strong></TableCell>
+            <TableCell align="center"><strong>Quantity</strong></TableCell>
+            <TableCell align="right"><strong>Price Per Item</strong></TableCell>
+            <TableCell align="right"><strong>Total Per Item</strong></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -236,9 +236,9 @@ import StoreSharpIcon from '@material-ui/icons/StoreSharp';
           </TableRow>
           {
             this.state.products.length>0?<TableRow>
-            <TableCell colSpan="3" align="center"><Button variant="contained" color="secondary" onClick={this.emptyCart}>Empty Cart</Button></TableCell>
+            <TableCell colSpan="3" align="center"><Button variant="contained" style={{ backgroundColor:"#8BC34A" }}  onClick={this.emptyCart}>Empty Cart</Button></TableCell>
             <TableCell colSpan="2" align="center">
-              <Button variant="contained" color="secondary" onClick={this.checkout}>Confirm Order<StoreSharpIcon></StoreSharpIcon></Button></TableCell>
+              <Button variant="contained"  style={{ backgroundColor:"#8BC34A" }} onClick={this.checkout}>Confirm Order<StoreSharpIcon></StoreSharpIcon></Button></TableCell>
             </TableRow>:
             <TableRow>
               <TableCell colSpan="2" align="center"><Button variant="contained" disabled onClick={this.emptyCart}>Empty Cart</Button></TableCell>

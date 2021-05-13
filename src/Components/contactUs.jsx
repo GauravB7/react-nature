@@ -67,6 +67,8 @@ class contactUs extends React.Component {
     }
 
   render() {
+    const { name, email, query } = this.state;
+    const isEnabled = name.length > 0 && email.length > 0 && query.length > 0;
     return (
         <div>
             <Header/>
@@ -80,7 +82,7 @@ class contactUs extends React.Component {
                         <div className="form-group">
                             <p>
                             <label htmlFor="cust_name">Name :</label>
-                            <input type="text" id="customerName" required="" value={this.state.name} onChange={(e)=>{
+                            <input placeholder="e.g. Mahendra Dhoni" type="text" id="customerName" required="" value={this.state.name} onChange={(e)=>{
                                 this.setState({
                                     name:e.target.value
                                 })
@@ -91,7 +93,7 @@ class contactUs extends React.Component {
                         <div className="form-group">
                             <p>
                             <label htmlFor="cust_name">Email : </label>
-                            <input type="text" id="customerMail" required="" value={this.state.email} onChange={(e)=>{
+                            <input placeholder="e.g. md123@gmail.com" type="text" id="customerMail" required="" value={this.state.email} onChange={(e)=>{
                                 this.setState({
                                     email:e.target.value
                                 })
@@ -102,7 +104,7 @@ class contactUs extends React.Component {
                         <div className="form-group">
                             <p>
                             <label htmlFor="cust_message" className="query">Query:</label><br />
-                            <textarea rows="4" id="customerNote" name="customerNote"  required="" value={this.state.query} onChange={(e)=>{
+                            <textarea placeholder="Query...." rows="4" id="customerNote" name="customerNote"  required="" value={this.state.query} onChange={(e)=>{
                                 this.setState({
                                     query:e.target.value
                                 })
@@ -110,7 +112,7 @@ class contactUs extends React.Component {
                             
                             </p>
                         </div>
-                        <a className="formSubmit" href="#"> <input type="submit"  id="submit" value="Submit"/></a>
+                        <a className="formSubmit" href="#"> <input disabled={!isEnabled} type="submit"  id="submit" value="Submit"/></a>
                     </form>
                 </div>
             </div>

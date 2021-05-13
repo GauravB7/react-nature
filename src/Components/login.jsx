@@ -100,18 +100,20 @@ class Login extends React.Component {
         return true;
     }
 
-    login(){
+    async login(){
         let loginPasswordError="";
         localStorage.setItem('email',this.state.email);
-        UserService.login(this.state.email,this.state.password).then(res=>{
+        await UserService.login(this.state.email,this.state.password).then(res=>{
             console.log(res);
-            UserService.setLocalStorage(res);
             console.log("Login successful");
             if(localStorage.getItem('productId')&&localStorage.getItem('productPrice')&&localStorage.getItem('productName')){
                 this.props.history.push("/cart");
+                window.location.reload();
             }else{
                 this.props.history.push("/");
+                window.location.reload();
             }
+            UserService.setLocalStorage(res);
         }).catch(
             err => {
                 localStorage.removeItem('email');
@@ -141,6 +143,10 @@ class Login extends React.Component {
 
 
   render() {
+    const { email, password } = this.state;
+    const isLoginEnabled = email.length > 0 && password.length > 0;
+    const { signUpName, signUpEmail, signUpPassword } = this.state;
+    const isSignUpEnabled = signUpName.length > 0 && signUpEmail.length > 0 && signUpPassword.length > 0;
     return (
         <div>
             <Header/>
@@ -152,14 +158,14 @@ class Login extends React.Component {
             <form method="POST" onSubmit={this.stopSignUpSubmission}>
                 <h2>Add Account</h2>
                 <p><label htmlFor="name">Name : </label>
-                <span id="nameBox"><input type="text" name="name" id="userName" value={this.state.signUpName} onChange={(e)=>{
+                <span id="nameBox"><input type="text" placeholder="e.g. Mahendra Dhoni" name="name" id="userName" value={this.state.signUpName} onChange={(e)=>{
                                 this.setState({
                                     signUpName:e.target.value
                                 })
                             }}/></span>
                 <span id="nameError">{this.state.nameError}</span></p>
                 <p><label htmlFor="email">Email : </label>
-                <input type="email" name="email" id="userEmail" value={this.state.signUpEmail} onChange={(e)=>{
+                <input type="email" placeholder="e.g. mdhoni123@gmail.com" name="email" id="userEmail" value={this.state.signUpEmail} onChange={(e)=>{
                                 this.setState({
                                     signUpEmail:e.target.value
                                 })
@@ -167,14 +173,14 @@ class Login extends React.Component {
                 <span id="emailError">{this.state.emailError}</span>
                 </p>
                 <p><label htmlFor="password">Password : </label>
-                <input type="password" name="password" id="userPassword" value={this.state.signUpPassword} onChange={(e)=>{
+                <input type="password" name="password" placeholder="e.g. Ab@1234" id="userPassword" value={this.state.signUpPassword} onChange={(e)=>{
                                 this.setState({
                                     signUpPassword:e.target.value
                                 })
                             }}/>
                  <span id="passwordError">{this.state.passwordError}</span>
                 </p>
-                <p><a><input type="submit" value="Create Account"/></a></p>
+                <p><a><input disabled={!isSignUpEnabled} type="submit" value="Create Account"/></a></p>
                 <p><span id="signUpSuccess">{this.state.signUpSuccess}</span>
                     <span id="signUpFail">{this.state.signUpFail}</span></p>
             </form>
@@ -183,7 +189,7 @@ class Login extends React.Component {
             <form method="POST" onSubmit={this.stopLoginSubmission}>
                 <h2>Already a User??</h2>
                 <p><label htmlFor="email">Email : </label>
-                <input type="email" name="email" id="email" value={this.state.email} onChange={(e)=>{
+                <input type="email" placeholder="e.g. mdhoni123@gmail.com" name="email" id="email" value={this.state.email} onChange={(e)=>{
                                 this.setState({
                                     email:e.target.value
                                 })
@@ -191,14 +197,14 @@ class Login extends React.Component {
                 <span id="loginEmailError">{this.state.loginEmailError}</span>
                 </p>
                 <p><label htmlFor="password">Password : </label>
-                <input type="password" name="password" id="password" value={this.state.productName} onChange={(e)=>{
+                <input type="password" placeholder="e.g. Md@1234" name="password" id="password" value={this.state.productName} onChange={(e)=>{
                                 this.setState({
                                     password:e.target.value
                                 })
                             }}/>
                 <span id="loginPasswordError">{this.state.loginPasswordError}</span>
                 </p>
-                <p><a><input type="submit" value="Login"/></a>
+                <p><a><input disabled={!isLoginEnabled} type="submit" value="Login"/></a>
                 </p>
             </form>
         </div>

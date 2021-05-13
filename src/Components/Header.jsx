@@ -34,6 +34,10 @@ class Header extends React.Component {
     }
   }
 
+  componentDidUpdate(){
+    UserService.isLoggedIn();
+  }
+
 
   render() {
     const handleClick = (event) => {
